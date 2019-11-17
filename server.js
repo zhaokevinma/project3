@@ -10,6 +10,7 @@ const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/project3";
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(require("./routes"));
 
 // ------ Serve static assests
 if (process.env.NODE_ENV === "production") {
