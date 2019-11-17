@@ -1,21 +1,20 @@
-// ------ Import Router from Express
+// ------ Dependencies
 const router = require("express").Router();
-
-// ------ db
-const db = require("../models");
+const apiRoutes = require("./api");
+const path = require("path");
 
 // ------ GET request to reach /test
 router.get("/test", (req, res) => {
     res.send("Test route");
 })
 
-// ------ GET request to fetch patients
-router.get("/api/patients", (req, res) => {
-    db.Patient
-        .find({})
-        .then(data => res.json(data))
-        .catch(err => res.status(422).json(err));
-})
+// ------ API routes
+router.use("/api", apiRoutes);
+
+// Default to index.html
+router.use(function(req, res) {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 
 // ------ Export router
 module.exports = router;
