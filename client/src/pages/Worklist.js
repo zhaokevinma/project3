@@ -1,8 +1,9 @@
 // ------ Dependencies
 import React, { Component } from "react";
 import API from "../utils/API";
-import { Container } from "../components/Grid";
+import { Row, Col, Container } from "../components/Grid";
 import WorklistComponent from "../components/Worklist";
+import FolderComponent from "../components/Folder";
 
 // ------ Main
 class Worklist extends Component {
@@ -23,7 +24,14 @@ class Worklist extends Component {
     render() {
         return (
             <Container fluid className="container">
-                <WorklistComponent patients={this.state.patients} />
+                <Row>
+                    <Col size="3">
+                        <FolderComponent />
+                    </Col>
+                    <Col size="9">
+                        <WorklistComponent patients={this.state.patients} />
+                    </Col>
+                </Row>
             </Container>
         )
     }

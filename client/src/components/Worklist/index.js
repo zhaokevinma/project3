@@ -1,6 +1,7 @@
 // ------ Dependencies
 import React from "react";
-import {Row, Col} from "../Grid";
+import { Row, Col } from "../Grid";
+import MedicalFileButton from "../MedicalFileButton";
 
 // ------ Component
 const Worklist = props => {
@@ -26,6 +27,9 @@ const Worklist = props => {
                                     </Col>
                                     <Col size="2">
                                         <h5>{patient.firstName}</h5>
+                                    </Col>
+                                    <Col size="2">
+                                        <MedicalFileButton />
                                     </Col>
                                 </Row>
                             </li>
