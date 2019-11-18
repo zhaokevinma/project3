@@ -24,7 +24,7 @@ const Worklist = props => {
                                     <Col size="2">
                                         <h5>{patient.lastName}</h5>
                                     </Col>
-                                    <Col>
+                                    <Col size="2">
                                         <h5>{patient.firstName}</h5>
                                     </Col>
                                 </Row>

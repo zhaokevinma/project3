@@ -4,8 +4,7 @@ const patientsController = require("../../controllers/patientsController");
 
 // ------ All
 router.route("/")
-    .get(patientsController.findAll)
-    .post(patientsController.create);
+    .get(patientsController.findAll);
     
 // ------ Export
 module.exports = router;
