@@ -1,6 +1,7 @@
 // ------ Dependencies
 import React from "react";
 import { Row, Col } from "../Grid";
+import InputFormComponent from "../InputForm";
 
 // ------ Component
 const Worklist = props => {
@@ -10,6 +11,7 @@ const Worklist = props => {
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>
+                    <InputFormComponent handleFormSubmit={props.handleFormSubmit}/>
                 </div>
             </div>
         </div>
@@ -18,6 +20,7 @@ const Worklist = props => {
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>
+                    <InputFormComponent handleFormSubmit={props.handleFormSubmit}/>
                     {props.patients.map(patient => {
                         return (
                             <li className="list-group-item" key={patient._id}>

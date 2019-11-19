@@ -8,5 +8,11 @@ module.exports = {
             .find(req.query)
             .then(data => res.json(data))
             .catch(err => res.status(422).json(err));
+    },
+    create: function(req, res) {
+        db.Patient
+            .create(req.body)
+            .then(data => res.json(data))
+            .catch(err => res.status(422).json(err));
     }
 };
