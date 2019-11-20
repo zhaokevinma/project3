@@ -1,29 +1,21 @@
 // ------ Dependencies
 import React from "react";
+import "./style.css";
 
 // ------ Input form
 const InputForm = props => {
     return (
         <form>
             <div className="form-group">
-                <input className="col-2 form-control"
-                    value={props.search}
+                <input 
+                    className="col-5 form-control"
                     type="text"
-                    name="typeLastName"
-                    placeholder="Last name"
-                    onChange={props.handleLastNameInput}
-                />
-                <input className="col-2 form-control"
-                    value={props.search}
-                    type="text"
-                    name="typeFirstName"
-                    placeholder="First name"
-                    onChange={props.handleFirstNameInput}
+                    name="searchTerm"
+                    placeholder="Patient Name..."
+                    value={props.searchTerm}
+                    onChange={props.handleOnChange}
                 />
             </div>
-            <button type="submit" className="btn btn-dark" onClick={props.handleFormSubmit}>
-                Search
-            </button>
         </form>
     )
 }

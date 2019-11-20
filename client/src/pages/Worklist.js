@@ -9,44 +9,60 @@ import FolderComponent from "../components/Folder";
 class Worklist extends Component {
     // ------ State contains an array of patient in db
     state = {
-        lastNameInput: "",
-        firstNameInput: "",
-        patients: []
+        patients: [],
+        patients_filtered: [],
+        folders:[],
+        searchTerm: ""
     };
 
     // ------ Render patients from db to state as soon as page loads
     componentDidMount() {
         // ------ Retrieve data and set state
+        this.grabPatients();
+        this.grabFolders();
+    }
+
+    // ------ grabPatients
+    grabPatients() {
         API.getPatients()
-            .then(res => this.setState({ patients: res.data }))
-            .catch(err => console.log(err))
+        .then(res => this.setState({ 
+            patients: res.data,
+            patients_filtered: res.data
+         }))
+        .catch(err => console.log(err));
+    }
+
+    // ------ grabFolders
+    grabFolders() {
+        API.getFolders()
+        .then(res => this.setState({
+            folders: res.data
+        }))
+        .catch(err => console.log(err));
     }
 
     // ------ Handles user input for Last Name
-    handleLastNameInput = event => {
-        this.setState( { lastNameInput: event.target.value })
-    }
-
-    // ------ Handles user Input for First Name
-    handlefirstNameInput = event => {
-        this.setState( { firstNameInput: event.target.value })
-    }
-
-    // ------ Handles form submit in input form component
-    handleFormSubmit = event => {
-        // ------ Do not refresh the page
-        event.preventDefault();
-        // ------- logging
-        console.log(this.state.patients);
-        // // ------ Define newPatient
-        // let newPatient = {
-        //     "lastName" : lastNameInput,
-        //     "firstName" : firstNameInput
-        // }
-        // // ------ Upon Click, API.getPatients brings data from db
-        // API.createPatient(newPatient)
-        //     .then (res => this.setState({ patients:res.data }))
-        //     .catch(err => console.log(err))
+    handleOnChange = event => {
+        // ------ Set search 
+        let searchTerm = event.target.value;
+        console.log(searchTerm);
+        this.setState( { searchTerm });
+        // ------
+        if (searchTerm === "") {
+            this.grabPatients();
+        } else {
+            let filtered = this.state.patients.filter(function(patient) {
+                let fullName = `${patient.firstName}${patient.lastName}`;
+                if (fullName.toLowerCase().indexOf(searchTerm) === -1) {
+                    return false;
+                }
+                return true;
+            });
+            console.log(filtered);
+            console.log(this.state.patients);
+            console.log(this.state.patients_filtered);
+            this.setState({ patients_filtered: filtered});
+        }
     }
 
     // ------ Render
@@ -55,15 +71,16 @@ class Worklist extends Component {
             <Container fluid className="container">
                 <Row>
                     <Col size="3">
-                        <FolderComponent />
+                        <FolderComponent 
+                            folders={this.state.folders}
+                        />
                     </Col>
                     <Col size="9">
                         <WorklistComponent 
-                            patients={this.state.patients} 
-                            handleLastNameInput={this.handleLastNameInput}
-                            handlefirstNameInput={this.handlefirstNameInput}
-                            handleFormSubmit={this.handleFormSubmit}
-                            />
+                            patients_filtered={this.state.patients_filtered} 
+                            searchTerm={this.state.searchTerm}
+                            handleOnChange={this.handleOnChange}
+                        />
                     </Col>
                 </Row>
             </Container>
