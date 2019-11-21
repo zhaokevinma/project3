@@ -37,7 +37,7 @@ class Worklist extends Component {
     // ------ grab patient by id
     grab1Patient(id) {
         API.getPatient(id)
-            .then(res => console.log(res.data))
+            .then(res => this.state.temp.push(res.data))
             .catch(err => console.log(err));
     }
 
@@ -98,15 +98,25 @@ class Worklist extends Component {
     // ------ Handle folder onClick filtering
     folderFilter = event => {
         event.preventDefault();
-        let folder_id = event.target.key || event.target.id;
+        
+        const folder_id = event.target.key || event.target.id;
+
         API.getFolder(folder_id)
             // .then(res => console.log(res.data.patients))
             .then(res => {
+                this.setState({ temp: [] });
+
                 res.data.patients.forEach(patient_id => {
-                    this.grab1Patient(patient_id);
+                    API.getPatient(patient_id)
+                        .then(res => this.state.temp.push(res.data))
+                        .catch(err => console.log(err));
                 });    
             })
+            .then(
+                this.setState({ patients_filtered: this.state.temp })
+            )
             .catch(err => console.log(err.response))
+
     }
 
     // ------ Render
