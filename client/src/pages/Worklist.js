@@ -62,7 +62,7 @@ class Worklist extends Component {
         } else {
             let filtered = this.state.patients.filter(function(patient) {
                 let fullName = `${patient.firstName}${patient.lastName}`;
-                if (fullName.toLowerCase().indexOf(searchTerm) === -1) {
+                if(fullName.toLowerCase().indexOf(searchTerm) === -1) {
                     return false;
                 }
                 return true;
@@ -101,22 +101,21 @@ class Worklist extends Component {
         
         const folder_id = event.target.key || event.target.id;
 
-        API.getFolder(folder_id)
-            // .then(res => console.log(res.data.patients))
-            .then(res => {
-                this.setState({ temp: [] });
+        let filtered = this.state.folders.filter(function(folder) {
+            if(folder._id === folder_id) {
+                return true;
+            }
+            return false;
+        })
+        console.log(filtered[0]);
+        console.log(filtered[0].patients);
+        let folderPatients = filtered[0].patients;
 
-                res.data.patients.forEach(patient_id => {
-                    API.getPatient(patient_id)
-                        .then(res => this.state.temp.push(res.data))
-                        .catch(err => console.log(err));
-                });    
-            })
-            .then(
-                this.setState({ patients_filtered: this.state.temp })
-            )
-            .catch(err => console.log(err.response))
+        let further_filter = this.state.patients.filter(function(patient) {
+            return folderPatients.indexOf(patient._id) > -1;
+        })
 
+        this.setState({ patients_filtered: further_filter });
     }
 
     // ------ Render
