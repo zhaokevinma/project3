@@ -8,5 +8,8 @@ export default {
     },
     getFolders: function() {
         return axios.get("api/folders");
+    },
+    createFolder: function(newFolder) {
+        return axios.post("/api/folders", newFolder);
     }
 }

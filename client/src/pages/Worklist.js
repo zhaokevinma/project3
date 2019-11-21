@@ -12,7 +12,8 @@ class Worklist extends Component {
         patients: [],
         patients_filtered: [],
         folders:[],
-        searchTerm: ""
+        searchTerm: "",
+        newFolder: ""
     };
 
     // ------ Render patients from db to state as soon as page loads
@@ -65,6 +66,27 @@ class Worklist extends Component {
         }
     }
 
+    // ------ Handles user input tracking of new folder
+    handleNewFolder = event => {
+        let newFolder = event.target.value;
+        console.log(newFolder);
+        this.setState({ newFolder });
+    }
+
+    // ------ Create new folder -> db
+    handleCreateFolder = event => {
+        event.preventDefault();
+
+        let folder = {
+            folderName: this.state.newFolder,
+            patients: []
+        };
+
+        API.createFolder(folder)
+            .then(this.grabFolders())
+            .catch(err => console.log(err.response))
+    }
+
     // ------ Render
     render() {
         return (
@@ -73,6 +95,8 @@ class Worklist extends Component {
                     <Col size="3">
                         <FolderComponent 
                             folders={this.state.folders}
+                            handleNewFolder={this.handleNewFolder}
+                            handleCreateFolder={this.handleCreateFolder}
                         />
                     </Col>
                     <Col size="9">
