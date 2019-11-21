@@ -2,8 +2,10 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Row, Col, Container } from "../components/Grid";
+// import { ButtonToolbar, Button } from 'react-bootstrap';
 import WorklistComponent from "../components/Worklist";
 import FolderComponent from "../components/Folder";
+// import PatientModel from "../components/PatientModel";
 
 // ------ Main
 class Worklist extends Component {
@@ -14,8 +16,35 @@ class Worklist extends Component {
         patients_filtered: [],
         folders:[],
         searchTerm: "",
-        newFolder: ""
+        newFolder: "",
+        newPatientFirst: "",
+        newPatientLast: "",
+        modalShow: false,
+        setModalShow: false
     };
+
+    // ------ Handles modal new patient create input
+    handleNewPatientFirst = event => {
+        this.setState({ newPatientFirst: event.target.value });
+    }
+
+    handleNewPatientLast = event => {
+        this.setState({ newPatientLast: event.target.value });
+    }
+
+    // ------ Handles new patient modal save button
+    handleSave = event => {
+        event.preventDefault();
+        
+        let newPatient = {
+            lastName: this.state.newPatientLast,
+            firstName: this.state.newPatientFirst
+        };
+
+        API.createPatient(newPatient)
+            .then(this.grabPatients())
+            .catch(err => console.log(err));
+    }
 
     // ------ Render patients from db to state as soon as page loads
     componentDidMount() {
@@ -50,7 +79,7 @@ class Worklist extends Component {
             .catch(err => console.log(err));
     }
 
-    // ------ Handles user input for Last Name
+    // ------ Handles user input for Searching Patient Name
     handleOnChange = event => {
         // ------ Set search 
         let searchTerm = event.target.value;
@@ -122,6 +151,21 @@ class Worklist extends Component {
     render() {
         return (
             <Container fluid className="container">
+                {/* <Row>
+                    <ButtonToolbar>
+                        <Button variant="primary" onClick={() => this.setState({ modalShow: true })}>
+                            <h5>Create new patient</h5>
+                        </Button>
+
+                        <PatientModel 
+                            show={this.state.modalShow}
+                            onHide={() => this.setState({ modalShow: false })}
+                            handleNewPatientFirst={this.handleNewPatientFirst}
+                            handleNewPatientLast={this.handleNewPatientLast}
+                            handleSave={this.handleSave}
+                        />
+                    </ButtonToolbar>
+                </Row> */}
                 <Row>
                     <Col size="3">
                         <FolderComponent 
@@ -136,6 +180,9 @@ class Worklist extends Component {
                             patients_filtered={this.state.patients_filtered} 
                             searchTerm={this.state.searchTerm}
                             handleOnChange={this.handleOnChange}
+                            handleNewPatientFirst={this.handleNewPatientFirst}
+                            handleNewPatientLast={this.handleNewPatientLast}
+                            handleSave={this.handleSave}
                         />
                     </Col>
                 </Row>

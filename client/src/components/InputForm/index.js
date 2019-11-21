@@ -11,7 +11,7 @@ const InputForm = props => {
                     className="col-5 form-control"
                     type="text"
                     name="searchTerm"
-                    placeholder="Patient Name..."
+                    placeholder="Search Patient Name..."
                     value={props.searchTerm}
                     onChange={props.handleOnChange}
                 />
