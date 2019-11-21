@@ -9,6 +9,7 @@ import FolderComponent from "../components/Folder";
 class Worklist extends Component {
     // ------ State contains an array of patient in db
     state = {
+        temp: [],
         patients: [],
         patients_filtered: [],
         folders:[],
@@ -26,20 +27,27 @@ class Worklist extends Component {
     // ------ grabPatients
     grabPatients() {
         API.getPatients()
-        .then(res => this.setState({ 
-            patients: res.data,
-            patients_filtered: res.data
-         }))
-        .catch(err => console.log(err));
+            .then(res => this.setState({ 
+                patients: res.data,
+                patients_filtered: res.data
+            }))
+            .catch(err => console.log(err));
+    }
+
+    // ------ grab patient by id
+    grab1Patient(id) {
+        API.getPatient(id)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
     }
 
     // ------ grabFolders
     grabFolders() {
         API.getFolders()
-        .then(res => this.setState({
-            folders: res.data
-        }))
-        .catch(err => console.log(err));
+            .then(res => this.setState({
+                folders: res.data
+            }))
+            .catch(err => console.log(err));
     }
 
     // ------ Handles user input for Last Name
@@ -87,6 +95,20 @@ class Worklist extends Component {
             .catch(err => console.log(err.response))
     }
 
+    // ------ Handle folder onClick filtering
+    folderFilter = event => {
+        event.preventDefault();
+        let folder_id = event.target.key || event.target.id;
+        API.getFolder(folder_id)
+            // .then(res => console.log(res.data.patients))
+            .then(res => {
+                res.data.patients.forEach(patient_id => {
+                    this.grab1Patient(patient_id);
+                });    
+            })
+            .catch(err => console.log(err.response))
+    }
+
     // ------ Render
     render() {
         return (
@@ -97,6 +119,7 @@ class Worklist extends Component {
                             folders={this.state.folders}
                             handleNewFolder={this.handleNewFolder}
                             handleCreateFolder={this.handleCreateFolder}
+                            folderFilter={this.folderFilter}
                         />
                     </Col>
                     <Col size="9">

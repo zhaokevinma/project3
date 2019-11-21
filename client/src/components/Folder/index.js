@@ -39,7 +39,7 @@ const Folder = props => {
                     {props.folders.map(folder => {
                         return (
                             <li className="list-group-item" key={folder._id}>
-                                <h5>{folder.folderName} {folder.patients.length}</h5>
+                                <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName} {folder.patients.length}</h5>
                             </li>
                         );
                     })}
