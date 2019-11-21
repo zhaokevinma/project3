@@ -14,8 +14,8 @@ app.use(require("./routes"));
 
 // ------ Serve static assests
 if (process.env.NODE_ENV === "production") {
-    console.log("Static folder:", __dirname + "client/build");
-    app.use(express.static(__dirname + "client/build"));
+    console.log("Static folder:", __dirname + "/client/build");
+    app.use(express.static(__dirname + "/client/build"));
 }
 
 // ------ Connect to Database and start server
