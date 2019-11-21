@@ -8,10 +8,10 @@ const FolderSchema = new Schema({
         type: String,
         required: true
     },
-    patient: {
+    patients: [{
         type: Schema.Types.ObjectId,
         ref: "Patient"
-    }
+    }]
 });
 
 const Folder = mongoose.model("Folder", FolderSchema);
