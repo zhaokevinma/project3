@@ -3,17 +3,12 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 const path = require("path");
 
-// ------ GET request to reach /test
-router.get("/test", (req, res) => {
-    res.send("Test route");
-})
-
 // ------ API routes
 router.use("/api", apiRoutes);
 
 // Default to index.html
 router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 
 // ------ Export router
