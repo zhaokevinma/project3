@@ -15,12 +15,11 @@ app.use(express.json());
 // ------ Serve static assets
 if (process.env.NODE_ENV === "production") {
     console.log("Static folder:", path.join(__dirname, "/client/build/static"));
-    app.use(express.static(path.join(__dirname, "/client/build/static")));
+    app.use("/static", express.static(path.join(__dirname, "/client/build/static")));
 }
 
 // ------ This needs to be after serving static assets
 app.use(require("./routes"));
-
 
 // ------ Express error handler
 app.use(function(err, req, res, next) {
