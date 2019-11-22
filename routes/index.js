@@ -8,7 +8,8 @@ router.use("/api", apiRoutes);
 
 // Default to index.html
 router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+    console.log("React here:", path.join(__dirname, "../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 // ------ Export router

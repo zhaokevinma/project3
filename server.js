@@ -15,14 +15,14 @@ app.use(require("./routes"));
 
 // ------ Serve static assests
 if (process.env.NODE_ENV === "production") {
-    console.log("Static folder:", __dirname + "/client/build");
+    console.log("Static folder:", path.join(__dirname, "/client/build"));
     app.use("/static", express.static(path.join(__dirname, "/client/build")));
 }
 
 // ------ Express error handler
 app.use(function(err, req, res, next) {
     console.log(err.static);
-    resizeBy.status(500);
+    res.status(500);
 })
 
 // ------ Connect to Database and start server
