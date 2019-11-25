@@ -129,22 +129,32 @@ class Worklist extends Component {
         event.preventDefault();
         
         const folder_id = event.target.key || event.target.id;
+        if(folder_id === "all") {
+            this.grabPatients();
+        } else {
+            let filtered = this.state.folders.filter(function(folder) {
+                if(folder._id === folder_id) {
+                    return true;
+                }
+                return false;
+            })
+            console.log(filtered[0]);
+            console.log(filtered[0].patients);
+            let folderPatients = filtered[0].patients;
 
-        let filtered = this.state.folders.filter(function(folder) {
-            if(folder._id === folder_id) {
-                return true;
-            }
-            return false;
-        })
-        console.log(filtered[0]);
-        console.log(filtered[0].patients);
-        let folderPatients = filtered[0].patients;
+            let further_filter = this.state.patients.filter(function(patient) {
+                return folderPatients.indexOf(patient._id) > -1;
+            })
 
-        let further_filter = this.state.patients.filter(function(patient) {
-            return folderPatients.indexOf(patient._id) > -1;
-        })
+            this.setState({ patients_filtered: further_filter });
+        }
+    }
 
-        this.setState({ patients_filtered: further_filter });
+    // ------ When medical file button is clicked
+    openFile = event => {
+        event.preventDefault();
+        console.log("Clicked");
+        window.open("https://www.w3schools.com");
     }
 
     // ------ Render
@@ -168,7 +178,9 @@ class Worklist extends Component {
                 </Row> */}
                 <Row>
                     <Col size="3">
-                        <FolderComponent 
+                        <FolderComponent
+                            patients={this.state.patients} 
+                            grabPatients={this.grabPatients}
                             folders={this.state.folders}
                             handleNewFolder={this.handleNewFolder}
                             handleCreateFolder={this.handleCreateFolder}
@@ -183,6 +195,7 @@ class Worklist extends Component {
                             handleNewPatientFirst={this.handleNewPatientFirst}
                             handleNewPatientLast={this.handleNewPatientLast}
                             handleSave={this.handleSave}
+                            openFile={this.openFile}
                         />
                     </Col>
                 </Row>

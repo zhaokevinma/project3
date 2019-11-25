@@ -103,7 +103,7 @@ const Worklist = props => {
                                         type="submit"
                                         onClick={props.handleSave}
                                     >
-                                    <i className="fas fa-check-circle"></i>
+                                        <i className="fas fa-check-circle"></i>
                                     </Button>
                                 </Card.Body>
                             </Accordion.Collapse>
@@ -117,7 +117,12 @@ const Worklist = props => {
                                         <h5>{patient.lastName}, {patient.firstName}</h5>
                                     </Col>
                                     <Col size="2">
-                                        <h5><i className="fas fa-file-medical"></i></h5>
+                                        <Button 
+                                            className="fileButton"
+                                            onClick={props.openFile}
+                                        >
+                                            <h5><i className="fas fa-file-medical"></i></h5>
+                                        </Button>
                                     </Col>
                                 </Row>
                             </li>

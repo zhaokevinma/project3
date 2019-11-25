@@ -46,6 +46,16 @@ const Folder = props => {
                             </Accordion.Collapse>
                         </Card>
                     </Accordion>
+                    <li className="list-group-item">
+                        <Row>
+                            <Col size="10">
+                                <h5 id="all" onClick={props.folderFilter}>All</h5>
+                            </Col>
+                            <Col size="2">
+                                <h5>{props.patients.length}</h5>
+                            </Col>
+                        </Row>
+                    </li>
                     {props.folders.map(folder => {
                         return (
                             <li className="list-group-item" key={folder._id}>
