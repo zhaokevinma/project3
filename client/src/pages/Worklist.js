@@ -147,6 +147,13 @@ class Worklist extends Component {
         this.setState({ patients_filtered: further_filter });
     }
 
+    // ------ When medical file button is clicked
+    openFile = event => {
+        event.preventDefault();
+        console.log("Clicked");
+        window.open("https://www.w3schools.com");
+    }
+
     // ------ Render
     render() {
         return (
@@ -183,6 +190,7 @@ class Worklist extends Component {
                             handleNewPatientFirst={this.handleNewPatientFirst}
                             handleNewPatientLast={this.handleNewPatientLast}
                             handleSave={this.handleSave}
+                            openFile={this.openFile}
                         />
                     </Col>
                 </Row>
