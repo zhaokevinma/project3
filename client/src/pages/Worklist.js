@@ -19,7 +19,9 @@ class Worklist extends Component {
         newPatientLast: "",
         modalShow: false,
         setModalShow: false,
-        comment: ""
+        comment: "",
+        newPatientImgURL: "",
+        newPatientComment: ""
     };
 
     // ------ Handles modal new patient create input
@@ -35,13 +37,23 @@ class Worklist extends Component {
         this.setState({ comment: event.target.value });
     }
 
+    handleNewPatientImgURL = event => {
+        this.setState({ newPatientImgURL: event.target.value });
+    }
+
+    handleNewPatientComment = event => {
+        this.setState({ newPatientComment: event.target.value });
+    }
+
     // ------ Handles new patient save button
     handleSave = event => {
         event.preventDefault();
         
         let newPatient = {
             lastName: this.state.newPatientLast,
-            firstName: this.state.newPatientFirst
+            firstName: this.state.newPatientFirst,
+            imageURL: this.state.newPatientImgURL,
+            note: this.state.newPatientComment
         };
 
         API.createPatient(newPatient)
@@ -167,6 +179,30 @@ class Worklist extends Component {
         }
     }
 
+    deleteFolder = event => {
+        event.preventDefault();
+        console.log("Clicked");
+
+        let folderID = event.target.id;
+        console.log(folderID);
+
+        API.deleteFolder(folderID)
+            .then(this.grabFolders())
+            .catch(err => console.log(err));
+    }
+
+    deletePatient = event => {
+        event.preventDefault();
+        console.log("Clicked");
+
+        let patientID = event.target.id;
+        console.log(patientID);
+
+        API.deletePatient(patientID)
+            .then(this.grabPatients())
+            .catch(err => console.log(err));
+    }
+
     // ------ When medical file button is clicked
     openFile = event => {
         event.preventDefault();
@@ -203,6 +239,7 @@ class Worklist extends Component {
                             handleNewFolder={this.handleNewFolder}
                             handleCreateFolder={this.handleCreateFolder}
                             folderFilter={this.folderFilter}
+                            deleteFolder={this.deleteFolder}
                         />
                     </Col>
                     <Col size="9">
@@ -212,11 +249,16 @@ class Worklist extends Component {
                             handleOnChange={this.handleOnChange}
                             handleNewPatientFirst={this.handleNewPatientFirst}
                             handleNewPatientLast={this.handleNewPatientLast}
+                            handleNewPatientImgURL={this.handleNewPatientImgURL}
+                            handleNewPatientComment={this.handleNewPatientComment}
                             handleSave={this.handleSave}
                             openFile={this.openFile}
                             comment={this.state.comment}
                             handleComment={this.handleComment}
                             handleSaveComment={this.handleSaveComment}
+                            newPatientComment={this.state.newPatientComment}
+                            newPatientImgURL={this.state.newPatientImgURL}
+                            deletePatient={this.deletePatient}
                         />
                     </Col>
                 </Row>

@@ -9,6 +9,7 @@ router.route("/")
 
 router.route("/:id")
     .get(foldersController.findById)
+    .delete(foldersController.remove);
     
 // ------ Export
 module.exports = router;

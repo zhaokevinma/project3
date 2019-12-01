@@ -15,6 +15,9 @@ export default {
     updatePatientComment: function(id, comment) {
         return axios.post("/api/patients/" + id, comment);
     },
+    deletePatient: function (id) {
+        return axios.delete("/api/patients/" + id);
+    },
     getFolders: function() {
         return axios.get("api/folders");
     },
@@ -23,5 +26,8 @@ export default {
     },
     createFolder: function(newFolder) {
         return axios.post("/api/folders", newFolder);
+    },
+    deleteFolder: function (id) {
+        return axios.delete("/api/folders/" + id);
     }
 }
