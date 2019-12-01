@@ -1,6 +1,6 @@
 // ------ Dependencies
 import React from "react";
-import { Accordion, Card, Button } from 'react-bootstrap'
+import { Accordion, Card, Button, Badge } from 'react-bootstrap'
 import { Row, Col} from "../Grid";
 import "./style.css";
 
@@ -52,7 +52,11 @@ const Folder = props => {
                                 <h5 id="all" onClick={props.folderFilter}>All</h5>
                             </Col>
                             <Col size="2">
-                                <h5>{props.patients.length}</h5>
+                                <h5>
+                                    <Badge variant="secondary">
+                                        {props.patients.length}
+                                    </Badge>
+                                </h5>
                             </Col>
                         </Row>
                     </li>
@@ -64,7 +68,11 @@ const Folder = props => {
                                         <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h5>
                                     </Col> 
                                     <Col size="2">
-                                        <h5>{folder.patients.length}</h5>
+                                        <h5>
+                                            <Badge variant="secondary">
+                                                {folder.patients.length}
+                                            </Badge>
+                                        </h5>
                                     </Col>
                                 </Row>
                             </li>

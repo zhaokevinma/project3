@@ -14,6 +14,9 @@ const PatientSchema = new Schema({
     },
     imageURL: {
         type: String
+    },
+    note: {
+        type: String
     }
 });
 

@@ -20,7 +20,8 @@ class Worklist extends Component {
         newPatientFirst: "",
         newPatientLast: "",
         modalShow: false,
-        setModalShow: false
+        setModalShow: false,
+        comment: ""
     };
 
     // ------ Handles modal new patient create input
@@ -30,6 +31,10 @@ class Worklist extends Component {
 
     handleNewPatientLast = event => {
         this.setState({ newPatientLast: event.target.value });
+    }
+
+    handleComment = event => {
+        this.setState({ comment: event.target.value });
     }
 
     // ------ Handles new patient modal save button
@@ -212,6 +217,9 @@ class Worklist extends Component {
                             handleNewPatientLast={this.handleNewPatientLast}
                             handleSave={this.handleSave}
                             openFile={this.openFile}
+                            comment={this.state.comment}
+                            handleComment={this.handleComment}
+                            handleSaveComment={this.handleSaveComment}
                         />
                     </Col>
                 </Row>
