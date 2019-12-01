@@ -11,6 +11,9 @@ const PatientSchema = new Schema({
     firstName: {
         type: String,
         required: true
+    },
+    imageURL: {
+        type: String
     }
 });
 

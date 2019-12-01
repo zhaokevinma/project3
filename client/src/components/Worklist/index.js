@@ -116,12 +116,13 @@ const Worklist = props => {
                                     <Col size="5">
                                         <h5>{patient.lastName}, {patient.firstName}</h5>
                                     </Col>
-                                    <Col size="2">
-                                        <Button 
+                                    <Col id={patient._id} size="2">
+                                        <Button
+                                            id={patient._id} 
                                             className="fileButton"
                                             onClick={props.openFile}
                                         >
-                                            <h5><i className="fas fa-file-medical"></i></h5>
+                                            <h5 id={patient._id}><i id={patient._id} className="fas fa-file-medical"></i></h5>
                                         </Button>
                                     </Col>
                                 </Row>
