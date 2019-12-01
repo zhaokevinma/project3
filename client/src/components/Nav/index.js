@@ -7,7 +7,9 @@ function Nav() {
   return (
     <nav className="navbar navbar-dark bg-dark">
       <a className="navbar-brand" href="/">
-        Home
+        <i class="fas fa-laptop-medical fa-2x"></i>
+        &nbsp;
+        Virtual Hospital
       </a>
     </nav>
   );

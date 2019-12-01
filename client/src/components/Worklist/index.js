@@ -1,7 +1,7 @@
 // ------ Dependencies
 import React from "react";
 import { Row, Col } from "../Grid";
-import { Accordion, Card, Button, FormControl, InputGroup } from 'react-bootstrap'
+import { Accordion, Card, Button, FormControl, InputGroup } from 'react-bootstrap';
 import InputFormComponent from "../InputForm";
 import "./style.css";
 
@@ -113,8 +113,11 @@ const Worklist = props => {
                         return (
                             <li className="list-group-item" key={patient._id}>
                                 <Row id={patient._id + "Card"}>
-                                    <Col size="5">
+                                    <Col size="4">
                                         <h5>{patient.lastName}, {patient.firstName}</h5>
+                                    </Col>
+                                    <Col size="4">
+                                        <h6>{patient.note}</h6>
                                     </Col>
                                     <Col id={patient._id} size="1">
                                         <Button
@@ -125,7 +128,7 @@ const Worklist = props => {
                                             <h5 id={patient._id}><i id={patient._id} className="fas fa-file-medical"></i></h5>
                                         </Button>
                                     </Col>
-                                    <Col size="4">
+                                    <Col size="3">
                                         <Accordion>
                                                 <Accordion.Toggle className="fileButton" as={Button} eventKey="0">
                                                     <h5 id={patient._id}>
