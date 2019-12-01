@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // ------ Connect to Database and start server
-mongoose.connect(MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect(MONGODB_URI, {useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false});
 app.listen(PORT, function() {
     console.log(`------ App running on port ${PORT} ------`);
 });

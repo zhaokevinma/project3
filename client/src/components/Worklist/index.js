@@ -146,6 +146,7 @@ const Worklist = props => {
                                                         />
                                                         <InputGroup.Append>
                                                             <Button 
+                                                                id={patient._id}
                                                                 variant="primary" 
                                                                 className="fileButton"
                                                                 onClick={props.handleSaveComment}

@@ -2,10 +2,8 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Row, Col, Container } from "../components/Grid";
-// import { ButtonToolbar, Button } from 'react-bootstrap';
 import WorklistComponent from "../components/Worklist";
 import FolderComponent from "../components/Folder";
-// import PatientModel from "../components/PatientModel";
 
 // ------ Main
 class Worklist extends Component {
@@ -37,7 +35,7 @@ class Worklist extends Component {
         this.setState({ comment: event.target.value });
     }
 
-    // ------ Handles new patient modal save button
+    // ------ Handles new patient save button
     handleSave = event => {
         event.preventDefault();
         
@@ -47,6 +45,20 @@ class Worklist extends Component {
         };
 
         API.createPatient(newPatient)
+            .then(this.grabPatients())
+            .catch(err => console.log(err));
+    }
+
+    handleSaveComment = event => {
+        event.preventDefault();
+
+        let patientID = event.target.id;
+        console.log(patientID);
+
+        let newComment = { note: this.state.comment };
+        console.log(newComment);
+
+        API.updatePatientComment(patientID, newComment)
             .then(this.grabPatients())
             .catch(err => console.log(err));
     }
@@ -182,21 +194,6 @@ class Worklist extends Component {
     render() {
         return (
             <Container fluid className="container">
-                {/* <Row>
-                    <ButtonToolbar>
-                        <Button variant="primary" onClick={() => this.setState({ modalShow: true })}>
-                            <h5>Create new patient</h5>
-                        </Button>
-
-                        <PatientModel 
-                            show={this.state.modalShow}
-                            onHide={() => this.setState({ modalShow: false })}
-                            handleNewPatientFirst={this.handleNewPatientFirst}
-                            handleNewPatientLast={this.handleNewPatientLast}
-                            handleSave={this.handleSave}
-                        />
-                    </ButtonToolbar>
-                </Row> */}
                 <Row>
                     <Col size="3">
                         <FolderComponent

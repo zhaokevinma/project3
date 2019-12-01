@@ -12,6 +12,9 @@ export default {
     createPatient: function(newPatient) {
         return axios.post("/api/patients", newPatient);
     },
+    updatePatientComment: function(id, comment) {
+        return axios.post("/api/patients/" + id, comment);
+    },
     getFolders: function() {
         return axios.get("api/folders");
     },

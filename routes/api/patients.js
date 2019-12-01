@@ -9,6 +9,7 @@ router.route("/")
 
 router.route("/:id")
     .get(patientsController.findById)
+    .post(patientsController.update);
     
 // ------ Export
 module.exports = router;
