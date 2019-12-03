@@ -179,8 +179,8 @@ const Worklist = props => {
                     </Accordion>
                     {props.patients_filtered.map(patient => {
                         return (
-                            <li className="list-group-item" key={patient._id}>
-                                <Row id={patient._id + "Card"}>
+                            <li className="list-group-item" key={patient._id} id={patient._id} draggable="true" onDragStart={props.drag}>
+                                <Row id={patient._id}>
                                     <Col size="4">
                                         <h5>{patient.lastName}, {patient.firstName}</h5>
                                     </Col>

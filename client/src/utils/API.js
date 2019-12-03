@@ -27,6 +27,9 @@ export default {
     createFolder: function(newFolder) {
         return axios.post("/api/folders", newFolder);
     },
+    updateFolderPatient: function(id, patient) {
+        return axios.post("/api/folders/" + id, patient);
+    },
     deleteFolder: function (id) {
         return axios.delete("/api/folders/" + id);
     }

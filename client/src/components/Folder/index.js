@@ -62,8 +62,13 @@ const Folder = props => {
                     </li>
                     {props.folders.map(folder => {
                         return (
-                            <li className="list-group-item" key={folder._id}>
-                                <Row>
+                            <li className="list-group-item" 
+                                key={folder._id} 
+                                id={folder._id}  
+                                onDrop={props.drop} 
+                                onDragOver={props.allowDrop}
+                            >
+                                <Row id={folder._id}>
                                     <Col size="8">
                                         <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h5>
                                     </Col> 

@@ -226,6 +226,28 @@ class Worklist extends Component {
         myWindow.document.write("<img width=500px height=500px src=" + patientImg + ">");
     }
 
+    // ------ Drag and drop related
+    allowDrop = event => {
+        event.preventDefault();
+    }
+
+    drag = event => {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+
+    drop = event => {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("text");
+        let newPatient = { patients: data };
+        console.log("patient._id: " + data);
+        let folderID = event.target.id;
+        console.log("folder._id " + folderID);
+        // event.target.appendChild(document.getElementById(data));
+        API.updateFolderPatient(folderID, newPatient)
+            .then(this.grabFolders())
+            .catch(err => console.log(err));
+    }
+
     // ------ Render
     render() {
         return (
@@ -240,6 +262,8 @@ class Worklist extends Component {
                             handleCreateFolder={this.handleCreateFolder}
                             folderFilter={this.folderFilter}
                             deleteFolder={this.deleteFolder}
+                            drop={this.drop}
+                            allowDrop={this.allowDrop}
                         />
                     </Col>
                     <Col size="9">
@@ -259,6 +283,7 @@ class Worklist extends Component {
                             newPatientComment={this.state.newPatientComment}
                             newPatientImgURL={this.state.newPatientImgURL}
                             deletePatient={this.deletePatient}
+                            drag={this.drag}
                         />
                     </Col>
                 </Row>
