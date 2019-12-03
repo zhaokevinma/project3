@@ -8,3 +8,11 @@
     border-color: white;
 }
 
+li {
+    background-color: white;
+    transition: background-color .5s;
+}
+
+li:hover {
+    background-color: #ecf0f1;
+}

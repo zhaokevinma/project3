@@ -1,6 +1,6 @@
 // ------ Dependencies
 import React from "react";
-import { Accordion, Card, Button } from 'react-bootstrap'
+import { Accordion, Card, Button, Badge } from 'react-bootstrap'
 import { Row, Col} from "../Grid";
 import "./style.css";
 
@@ -48,23 +48,46 @@ const Folder = props => {
                     </Accordion>
                     <li className="list-group-item">
                         <Row>
-                            <Col size="10">
+                            <Col size="8">
                                 <h5 id="all" onClick={props.folderFilter}>All</h5>
                             </Col>
                             <Col size="2">
-                                <h5>{props.patients.length}</h5>
+                                <h5>
+                                    <Badge variant="secondary">
+                                        {props.patients.length}
+                                    </Badge>
+                                </h5>
                             </Col>
                         </Row>
                     </li>
                     {props.folders.map(folder => {
                         return (
-                            <li className="list-group-item" key={folder._id}>
-                                <Row>
-                                    <Col size="10">
+                            <li className="list-group-item" 
+                                key={folder._id} 
+                                id={folder._id}  
+                                onDrop={props.drop} 
+                                onDragOver={props.allowDrop}
+                            >
+                                <Row id={folder._id}>
+                                    <Col size="8">
                                         <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h5>
                                     </Col> 
                                     <Col size="2">
-                                        <h5>{folder.patients.length}</h5>
+                                        <h5>
+                                            <Badge variant="secondary">
+                                                {folder.patients.length}
+                                            </Badge>
+                                        </h5>
+                                    </Col>
+                                    <Col size="2">
+                                        <Button 
+                                            size="sm" 
+                                            variant="outline-danger"
+                                            id={folder._id}
+                                            onClick={props.deleteFolder}
+                                        >
+                                            <i id={folder._id} className="fas fa-trash-alt"></i>
+                                        </Button>
                                     </Col>
                                 </Row>
                             </li>

@@ -2,10 +2,8 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import { Row, Col, Container } from "../components/Grid";
-// import { ButtonToolbar, Button } from 'react-bootstrap';
 import WorklistComponent from "../components/Worklist";
 import FolderComponent from "../components/Folder";
-// import PatientModel from "../components/PatientModel";
 
 // ------ Main
 class Worklist extends Component {
@@ -20,7 +18,10 @@ class Worklist extends Component {
         newPatientFirst: "",
         newPatientLast: "",
         modalShow: false,
-        setModalShow: false
+        setModalShow: false,
+        comment: "",
+        newPatientImgURL: "",
+        newPatientComment: ""
     };
 
     // ------ Handles modal new patient create input
@@ -32,16 +33,44 @@ class Worklist extends Component {
         this.setState({ newPatientLast: event.target.value });
     }
 
-    // ------ Handles new patient modal save button
+    handleComment = event => {
+        this.setState({ comment: event.target.value });
+    }
+
+    handleNewPatientImgURL = event => {
+        this.setState({ newPatientImgURL: event.target.value });
+    }
+
+    handleNewPatientComment = event => {
+        this.setState({ newPatientComment: event.target.value });
+    }
+
+    // ------ Handles new patient save button
     handleSave = event => {
         event.preventDefault();
         
         let newPatient = {
             lastName: this.state.newPatientLast,
-            firstName: this.state.newPatientFirst
+            firstName: this.state.newPatientFirst,
+            imageURL: this.state.newPatientImgURL,
+            note: this.state.newPatientComment
         };
 
         API.createPatient(newPatient)
+            .then(this.grabPatients())
+            .catch(err => console.log(err));
+    }
+
+    handleSaveComment = event => {
+        event.preventDefault();
+
+        let patientID = event.target.id;
+        console.log(patientID);
+
+        let newComment = { note: this.state.comment };
+        console.log(newComment);
+
+        API.updatePatientComment(patientID, newComment)
             .then(this.grabPatients())
             .catch(err => console.log(err));
     }
@@ -150,6 +179,30 @@ class Worklist extends Component {
         }
     }
 
+    deleteFolder = event => {
+        event.preventDefault();
+        console.log("Clicked");
+
+        let folderID = event.target.id;
+        console.log(folderID);
+
+        API.deleteFolder(folderID)
+            .then(this.grabFolders())
+            .catch(err => console.log(err));
+    }
+
+    deletePatient = event => {
+        event.preventDefault();
+        console.log("Clicked");
+
+        let patientID = event.target.id;
+        console.log(patientID);
+
+        API.deletePatient(patientID)
+            .then(this.grabPatients())
+            .catch(err => console.log(err));
+    }
+
     // ------ When medical file button is clicked
     openFile = event => {
         event.preventDefault();
@@ -173,25 +226,32 @@ class Worklist extends Component {
         myWindow.document.write("<img width=500px height=500px src=" + patientImg + ">");
     }
 
+    // ------ Drag and drop related
+    allowDrop = event => {
+        event.preventDefault();
+    }
+
+    drag = event => {
+        event.dataTransfer.setData("text", event.target.id);
+    }
+
+    drop = event => {
+        event.preventDefault();
+        let data = event.dataTransfer.getData("text");
+        let newPatient = { patients: data };
+        console.log("patient._id: " + data);
+        let folderID = event.target.id;
+        console.log("folder._id " + folderID);
+        // event.target.appendChild(document.getElementById(data));
+        API.updateFolderPatient(folderID, newPatient)
+            .then(this.grabFolders())
+            .catch(err => console.log(err));
+    }
+
     // ------ Render
     render() {
         return (
             <Container fluid className="container">
-                {/* <Row>
-                    <ButtonToolbar>
-                        <Button variant="primary" onClick={() => this.setState({ modalShow: true })}>
-                            <h5>Create new patient</h5>
-                        </Button>
-
-                        <PatientModel 
-                            show={this.state.modalShow}
-                            onHide={() => this.setState({ modalShow: false })}
-                            handleNewPatientFirst={this.handleNewPatientFirst}
-                            handleNewPatientLast={this.handleNewPatientLast}
-                            handleSave={this.handleSave}
-                        />
-                    </ButtonToolbar>
-                </Row> */}
                 <Row>
                     <Col size="3">
                         <FolderComponent
@@ -201,6 +261,9 @@ class Worklist extends Component {
                             handleNewFolder={this.handleNewFolder}
                             handleCreateFolder={this.handleCreateFolder}
                             folderFilter={this.folderFilter}
+                            deleteFolder={this.deleteFolder}
+                            drop={this.drop}
+                            allowDrop={this.allowDrop}
                         />
                     </Col>
                     <Col size="9">
@@ -210,8 +273,17 @@ class Worklist extends Component {
                             handleOnChange={this.handleOnChange}
                             handleNewPatientFirst={this.handleNewPatientFirst}
                             handleNewPatientLast={this.handleNewPatientLast}
+                            handleNewPatientImgURL={this.handleNewPatientImgURL}
+                            handleNewPatientComment={this.handleNewPatientComment}
                             handleSave={this.handleSave}
                             openFile={this.openFile}
+                            comment={this.state.comment}
+                            handleComment={this.handleComment}
+                            handleSaveComment={this.handleSaveComment}
+                            newPatientComment={this.state.newPatientComment}
+                            newPatientImgURL={this.state.newPatientImgURL}
+                            deletePatient={this.deletePatient}
+                            drag={this.drag}
                         />
                     </Col>
                 </Row>
