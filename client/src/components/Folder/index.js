@@ -27,14 +27,14 @@ const Folder = props => {
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
-                                <input 
-                                    className="form-control"
-                                    type="text"
-                                    name="newFolder"
-                                    placeholder="Folder Name..."
-                                    value={props.newFolder}
-                                    onChange={props.handleNewFolder}
-                                />
+                                    <input 
+                                        className="form-control"
+                                        type="text"
+                                        name="newFolder"
+                                        placeholder="Folder Name..."
+                                        value={props.newFolder}
+                                        onChange={props.handleNewFolder}
+                                    />
                                 <Button block
                                     className="createFolder"
                                     type="submit"

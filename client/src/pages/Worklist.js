@@ -45,6 +45,17 @@ class Worklist extends Component {
         this.setState({ newPatientComment: event.target.value });
     }
 
+    helperNewPatient = response => {
+        // this is not updating patients in the state, could cause issues
+        let temp = this.state.patients_filtered;
+
+
+        temp.push(response.data);
+
+
+        this.setState({ patients_filtered: temp })
+    }
+
     // ------ Handles new patient save button
     handleSave = event => {
         event.preventDefault();
@@ -57,7 +68,7 @@ class Worklist extends Component {
         };
 
         API.createPatient(newPatient)
-            .then(this.grabPatients())
+            .then(res => this.helperNewPatient(res))
             .catch(err => console.log(err));
     }
 
@@ -139,6 +150,12 @@ class Worklist extends Component {
         this.setState({ newFolder });
     }
 
+    helperCreateFolder = response => {
+        let temp = this.state.folders;
+        temp.push(response.data);
+        this.setState({ folders: temp });
+    }
+
     // ------ Create new folder -> db
     handleCreateFolder = event => {
         event.preventDefault();
@@ -149,7 +166,7 @@ class Worklist extends Component {
         };
 
         API.createFolder(folder)
-            .then(this.grabFolders())
+            .then(res => this.helperCreateFolder(res))
             .catch(err => console.log(err.response))
     }
 
@@ -179,6 +196,18 @@ class Worklist extends Component {
         }
     }
 
+    helperDeleteFolder = response => {
+        let temp = this.state.folders.filter(function(folder) {
+            if(folder._id === response.data._id) {
+                return false;
+            }
+            return true;
+        })
+
+        this.setState({ folders: temp });
+
+    }
+
     deleteFolder = event => {
         event.preventDefault();
         console.log("Clicked");
@@ -187,8 +216,26 @@ class Worklist extends Component {
         console.log(folderID);
 
         API.deleteFolder(folderID)
-            .then(this.grabFolders())
+            .then(res => this.helperDeleteFolder(res))
             .catch(err => console.log(err));
+    }
+
+    helperDeletePatient = response => {
+        let temp = this.state.patients.filter(function(patient) {
+            if(patient._id === response.data._id) {
+                return false;
+            }
+            return true;
+        })
+
+        let temp2 = this.state.patients_filtered.filter(function(patient) {
+            if(patient._id === response.data._id) {
+                return false;
+            }
+            return true;
+        })
+
+        this.setState({ patients: temp, patients_filtered: temp2 });
     }
 
     deletePatient = event => {
@@ -199,7 +246,7 @@ class Worklist extends Component {
         console.log(patientID);
 
         API.deletePatient(patientID)
-            .then(this.grabPatients())
+            .then(res => this.helperDeletePatient(res))
             .catch(err => console.log(err));
     }
 
@@ -264,6 +311,7 @@ class Worklist extends Component {
                             deleteFolder={this.deleteFolder}
                             drop={this.drop}
                             allowDrop={this.allowDrop}
+                            folderAccordionEventKey={this.state.folderAccordionEventKey}
                         />
                     </Col>
                     <Col size="9">
