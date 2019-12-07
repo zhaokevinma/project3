@@ -1,12 +1,12 @@
 // ------ Dependencies
+const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
-const path = require("path");
+const authRoutes = require("./auth");
 
-// ------ GET request to reach /test
-router.get("/test", (req, res) => {
-    res.send("Test route");
-})
+
+// Auth Routes
+router.use('/auth', authRoutes);
 
 // ------ API routes
 router.use("/api", apiRoutes);

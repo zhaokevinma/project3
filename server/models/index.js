@@ -1,5 +1,6 @@
 // ------ Export Patient
 module.exports = {
     Patient: require("./patient"),
-    Folder: require("./folder")
+    Folder: require("./folder"),
+    User: require("./user")
 };
