@@ -8,7 +8,7 @@ import "./style.css";
 // ------ Worklist Component
 const Worklist = props => {
     return (props.patients_filtered.length === 0) ? (
-        <div className="card">
+        <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>
@@ -94,7 +94,7 @@ const Worklist = props => {
             </div>
         </div>
     ) : (
-        <div className="card">
+        <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>

@@ -7,7 +7,7 @@ import "./style.css";
 // ------ Folder
 const Folder = props => {
     return (
-        <div className="card">
+        <div className="card folderwhole">
             <div className="card-body">
                 <div className="folder">
                     <h4>Folders</h4>
@@ -48,8 +48,8 @@ const Folder = props => {
                     </Accordion>
                     <li className="list-group-item">
                         <Row>
-                            <Col size="8">
-                                <h5 id="all" onClick={props.folderFilter}>All</h5>
+                            <Col size="7">
+                                <h6 id="all" onClick={props.folderFilter}>All</h6>
                             </Col>
                             <Col size="2">
                                 <h5>
@@ -69,8 +69,8 @@ const Folder = props => {
                                 onDragOver={props.allowDrop}
                             >
                                 <Row id={folder._id}>
-                                    <Col size="8">
-                                        <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h5>
+                                    <Col size="7">
+                                        <h6 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h6>
                                     </Col> 
                                     <Col size="2">
                                         <h5>

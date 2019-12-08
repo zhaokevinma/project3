@@ -22,3 +22,8 @@ li:hover {
     border-bottom: none;
     color: white
 }
+
+.worklistwhole {
+    height: 70vh;
+    overflow-y: scroll;
+}

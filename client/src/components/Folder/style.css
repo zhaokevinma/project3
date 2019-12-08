@@ -12,3 +12,8 @@ input {
     border-bottom: none;
     color: white
 }
+
+.folderwhole {
+    height: 70vh;
+    overflow-y: scroll;
+}
