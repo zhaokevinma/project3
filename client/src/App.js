@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginForm from './pages/Auth/LoginForm';
 import SignupForm from './pages/Auth/SignupForm';
 import Nav from "./components/Nav";
+import Footer from "./components/Footer";
 import WorklistPage from "./pages/Worklist";
 import NoMatch from "./pages/NoMatch";
 import AUTH from './utils/AUTH';
@@ -68,14 +69,15 @@ class App extends Component {
 		return (
 			<div className="App">
         { this.state.loggedIn && (
-          <div>
+          <div className="viewport">
             <Nav user={this.state.user} logout={this.logout}/>
-            <div className="main-view">
-              <Switch>
-                <Route exact path="/" component={() => <WorklistPage user={this.state.user}/>} />
-                <Route component={NoMatch} />
-              </Switch>
-            </div>
+              <div className="main-view">
+                <Switch>
+                  <Route exact path="/" component={() => <WorklistPage user={this.state.user}/>} />
+                  <Route component={NoMatch} />
+                </Switch>
+              </div>
+            <Footer />
           </div>
         )}
         { !this.state.loggedIn && (
