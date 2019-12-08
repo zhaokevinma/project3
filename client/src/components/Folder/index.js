@@ -16,10 +16,10 @@ const Folder = props => {
                             <Card.Header>
                             <Accordion.Toggle as={Card.Header} eventKey="1">
                                 <Row>
-                                    <Col size="2">
+                                    <Col size="3">
                                         <i className="fas fa-folder-plus fa-2x"></i>
                                     </Col>
-                                    <Col size="6">
+                                    <Col size="9">
                                         <h5>New folder</h5>
                                     </Col>
                                 </Row>

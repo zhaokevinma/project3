@@ -29,7 +29,8 @@ const Nav = (props) => {
         <Link to="/" className="navbar-brand">
           <i className="fas fa-laptop-medical fa-2x"></i>
           &nbsp;
-          Virtual Hospital
+          &nbsp;
+          Virtual Hospital 1.0
         </Link>
       </Col>
       <Col size="md-7"></Col>
