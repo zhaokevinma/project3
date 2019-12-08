@@ -1,9 +1,9 @@
 // ------ Dependencies
 import React, { Component } from "react";
-import API from "../utils/API";
-import { Row, Col, Container } from "../components/Grid";
-import WorklistComponent from "../components/Worklist";
-import FolderComponent from "../components/Folder";
+import API from "../../utils/API";
+import { Row, Col, Container } from "../../components/Grid";
+import WorklistComponent from "../../components/Worklist";
+import FolderComponent from "../../components/Folder";
 
 // ------ Main
 class Worklist extends Component {

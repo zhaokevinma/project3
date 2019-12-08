@@ -16,3 +16,9 @@ li {
 li:hover {
     background-color: #ecf0f1;
 }
+
+.card-header {
+    text-align: left;
+    border-bottom: none;
+    color: white
+}

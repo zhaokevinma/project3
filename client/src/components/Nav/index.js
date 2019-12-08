@@ -35,7 +35,7 @@ const Nav = (props) => {
       <Col size="md-7"></Col>
       <Col size="md-3">
         <div className="float-right">
-        {greeting} - <Link to="#" className="logout" onClick={props.logout}>Logout</Link>
+          {greeting} - <Link to="#" className="logout" onClick={props.logout}>Logout</Link>
         </div>
       </Col>
     </nav>

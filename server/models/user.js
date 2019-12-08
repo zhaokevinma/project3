@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
 mongoose.promise = Promise;
 
+// This line is to resolve the following deprecation warning 
+// "DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.""
+mongoose.set('useCreateIndex', true);
+
 // Define userSchema
 const userSchema = new Schema({
 	firstName: { type: String, unique: false },

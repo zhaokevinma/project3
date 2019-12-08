@@ -16,13 +16,13 @@ const Worklist = props => {
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                <Accordion.Toggle as={Card.Header} eventKey="1">
                                     <Row>
                                         <Col size="3">
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>Create patient</h4>
+                                            <h4>New Patient</h4>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>
@@ -103,13 +103,13 @@ const Worklist = props => {
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                <Accordion.Toggle as={Card.Header} eventKey="1">
                                     <Row>
-                                        <Col size="3">
+                                        <Col size="1">
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>Create patient</h4>
+                                            <h4>New Patient</h4>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>

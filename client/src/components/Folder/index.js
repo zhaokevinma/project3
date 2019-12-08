@@ -14,13 +14,13 @@ const Folder = props => {
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                            <Accordion.Toggle as={Card.Header} eventKey="1">
                                 <Row>
-                                    <Col size="3">
+                                    <Col size="2">
                                         <i className="fas fa-folder-plus fa-2x"></i>
                                     </Col>
                                     <Col size="6">
-                                        <h4>Create folder</h4>
+                                        <h5>New folder</h5>
                                     </Col>
                                 </Row>
                             </Accordion.Toggle>

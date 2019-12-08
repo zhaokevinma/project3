@@ -5,7 +5,7 @@ const apiRoutes = require("./api");
 const authRoutes = require("./auth");
 
 
-// Auth Routes
+// ------ Auth Routes
 router.use('/auth', authRoutes);
 
 // ------ API routes

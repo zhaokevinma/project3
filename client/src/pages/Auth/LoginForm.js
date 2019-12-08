@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
+import "./style.css";
 
 class LoginForm extends Component {
   
@@ -39,7 +40,7 @@ class LoginForm extends Component {
           <Row>
             <Col size="md-3"></Col>
             <Col size="md-6">
-              <Card title="Login to React Reading List">
+              <Card title="Login to Virtual Hospital 1.0">
                 <form style={{marginTop: 10}}>
                   <label htmlFor="username">Username: </label>
                   <Input

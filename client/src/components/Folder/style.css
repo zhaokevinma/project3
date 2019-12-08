@@ -6,3 +6,9 @@ input {
     background-color: #18BC9C;
     border-color: white;
 }
+
+.card-header {
+    padding: 10px;
+    border-bottom: none;
+    color: white
+}

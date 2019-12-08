@@ -4,6 +4,7 @@ import { Container, Row, Col } from '../../components/Grid';
 import { Card } from '../../components/Card';
 import { Input, FormBtn } from '../../components/Form';
 import AUTH from '../../utils/AUTH';
+import "./style.css";
 
 class SignupForm extends Component {
 
@@ -56,7 +57,7 @@ class SignupForm extends Component {
         <Row>
           <Col size="md-3"></Col>
           <Col size="md-6">
-            <Card title="Register for React Reading List">
+            <Card title="Register for Virtual Hospital 1.0">
               <form style={{marginTop: 10}}>
                 <label htmlFor="username">First name: </label>
                 <Input
