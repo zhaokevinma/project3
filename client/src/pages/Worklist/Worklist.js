@@ -21,7 +21,8 @@ class Worklist extends Component {
         setModalShow: false,
         comment: "",
         newPatientImgURL: "",
-        newPatientComment: ""
+        newPatientComment: "",
+        file: {}
     };
 
     // ------ Handles modal new patient create input
@@ -63,7 +64,8 @@ class Worklist extends Component {
         let newPatient = {
             lastName: this.state.newPatientLast,
             firstName: this.state.newPatientFirst,
-            imageURL: this.state.newPatientImgURL,
+            cloudinary_id: this.state.file.public_id,
+            imageURL: this.state.newPatientImgURL || this.state.file.secure_url,
             note: this.state.newPatientComment
         };
 
@@ -311,8 +313,9 @@ class Worklist extends Component {
         )
         
         const file = await res.json();
+        console.log(file);
 
-        this.setState({ image: file.secure_url });
+        this.setState({ file: file });
     }
 
     // ------ Render
