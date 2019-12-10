@@ -152,7 +152,10 @@ const Worklist = props => {
                                         </Col>
                                         <Col size="6">
                                             <input 
+                                                name="file" 
                                                 type="file"
+                                                className="file-upload" 
+                                                onChange={props.uploadImg}
                                             />
                                         </Col>
                                     </Row>

@@ -295,6 +295,26 @@ class Worklist extends Component {
             .catch(err => console.log(err));
     }
 
+    // ------ Upload img to cloudinary
+    uploadImg = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'patient');
+
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dqnwm3uoi/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        
+        const file = await res.json();
+
+        this.setState({ image: file.secure_url });
+    }
+
     // ------ Render
     render() {
         return (
@@ -332,6 +352,7 @@ class Worklist extends Component {
                             newPatientImgURL={this.state.newPatientImgURL}
                             deletePatient={this.deletePatient}
                             drag={this.drag}
+                            uploadImg={this.uploadImg}
                         />
                     </Col>
                 </Row>
