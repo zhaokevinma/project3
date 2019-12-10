@@ -7,34 +7,34 @@ import "./style.css";
 // ------ Folder
 const Folder = props => {
     return (
-        <div className="card">
+        <div className="card folderwhole">
             <div className="card-body">
                 <div className="folder">
                     <h4>Folders</h4>
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                            <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                            <Accordion.Toggle as={Card.Header} eventKey="1">
                                 <Row>
                                     <Col size="3">
                                         <i className="fas fa-folder-plus fa-2x"></i>
                                     </Col>
-                                    <Col size="6">
-                                        <h4>Create folder</h4>
+                                    <Col size="9">
+                                        <h5>New folder</h5>
                                     </Col>
                                 </Row>
                             </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
-                                <input 
-                                    className="form-control"
-                                    type="text"
-                                    name="newFolder"
-                                    placeholder="Folder Name..."
-                                    value={props.newFolder}
-                                    onChange={props.handleNewFolder}
-                                />
+                                    <input 
+                                        className="form-control"
+                                        type="text"
+                                        name="newFolder"
+                                        placeholder="Folder Name..."
+                                        value={props.newFolder}
+                                        onChange={props.handleNewFolder}
+                                    />
                                 <Button block
                                     className="createFolder"
                                     type="submit"
@@ -48,8 +48,8 @@ const Folder = props => {
                     </Accordion>
                     <li className="list-group-item">
                         <Row>
-                            <Col size="8">
-                                <h5 id="all" onClick={props.folderFilter}>All</h5>
+                            <Col size="7">
+                                <h6 id="all" onClick={props.folderFilter}>All</h6>
                             </Col>
                             <Col size="2">
                                 <h5>
@@ -69,8 +69,8 @@ const Folder = props => {
                                 onDragOver={props.allowDrop}
                             >
                                 <Row id={folder._id}>
-                                    <Col size="8">
-                                        <h5 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h5>
+                                    <Col size="7">
+                                        <h6 id={folder._id} onClick={props.folderFilter}>{folder.folderName}</h6>
                                     </Col> 
                                     <Col size="2">
                                         <h5>

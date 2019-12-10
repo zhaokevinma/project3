@@ -3,12 +3,13 @@ import React from "react";
 import { Row, Col } from "../Grid";
 import { Accordion, Card, Button, FormControl, InputGroup } from 'react-bootstrap';
 import InputFormComponent from "../InputForm";
+import { Image } from 'cloudinary-react';
 import "./style.css";
 
 // ------ Worklist Component
 const Worklist = props => {
     return (props.patients_filtered.length === 0) ? (
-        <div className="card">
+        <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>
@@ -16,13 +17,13 @@ const Worklist = props => {
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                <Accordion.Toggle as={Card.Header} eventKey="1">
                                     <Row>
-                                        <Col size="3">
+                                        <Col size="1">
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>Create patient</h4>
+                                            <h4>New Patient</h4>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>
@@ -30,7 +31,7 @@ const Worklist = props => {
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
                                     <Row>
-                                        <Col size="4">
+                                        <Col size="5">
                                             <input 
                                                 className="form-control"
                                                 type="text"
@@ -40,7 +41,7 @@ const Worklist = props => {
                                                 onChange={props.handleNewPatientFirst}
                                             />
                                         </Col>
-                                        <Col size="4">
+                                        <Col size="5">
                                             <input 
                                                 className="form-control"
                                                 type="text"
@@ -52,7 +53,7 @@ const Worklist = props => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col size="8">
+                                        <Col size="5">
                                             <input
                                                 className="form-control"
                                                 type="text"
@@ -62,9 +63,20 @@ const Worklist = props => {
                                                 onChange={props.handleNewPatientImgURL}
                                             />
                                         </Col>
+                                        <Col size="1">
+                                            <h4>OR</h4>
+                                        </Col>
+                                        <Col size="5">
+                                            <input 
+                                                name="file" 
+                                                type="file"
+                                                className="file-upload" 
+                                                onChange={props.uploadImg}
+                                            />
+                                        </Col>
                                     </Row>
                                     <Row>
-                                        <Col size="6">
+                                        <Col size="8">
                                             <FormControl 
                                                 as="textarea"  
                                                 rows="2"
@@ -94,7 +106,7 @@ const Worklist = props => {
             </div>
         </div>
     ) : (
-        <div className="card">
+        <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
                     <h4>Worklist</h4>
@@ -103,13 +115,13 @@ const Worklist = props => {
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                <Accordion.Toggle as={Card.Header} eventKey="1">
                                     <Row>
-                                        <Col size="3">
+                                        <Col size="1">
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>Create patient</h4>
+                                            <h4>New Patient</h4>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>
@@ -117,7 +129,7 @@ const Worklist = props => {
                             <Accordion.Collapse eventKey="1">
                                 <Card.Body>
                                     <Row>
-                                        <Col size="4">
+                                        <Col size="5">
                                             <input 
                                                 className="form-control"
                                                 type="text"
@@ -127,7 +139,7 @@ const Worklist = props => {
                                                 onChange={props.handleNewPatientFirst}
                                             />
                                         </Col>
-                                        <Col size="4">
+                                        <Col size="5">
                                             <input 
                                                 className="form-control"
                                                 type="text"
@@ -139,7 +151,7 @@ const Worklist = props => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col size="8">
+                                        <Col size="5">
                                             <input
                                                 className="form-control"
                                                 type="text"
@@ -149,9 +161,20 @@ const Worklist = props => {
                                                 onChange={props.handleNewPatientImgURL}
                                             />
                                         </Col>
+                                        <Col size="1">
+                                            <h4>OR</h4>
+                                        </Col>
+                                        <Col size="5">
+                                            <input 
+                                                name="file" 
+                                                type="file"
+                                                className="file-upload" 
+                                                onChange={props.uploadImg}
+                                            />
+                                        </Col>
                                     </Row>
                                     <Row>
-                                        <Col size="6">
+                                        <Col size="8">
                                             <FormControl 
                                                 as="textarea"  
                                                 rows="2"
@@ -181,8 +204,11 @@ const Worklist = props => {
                         return (
                             <li className="list-group-item" key={patient._id} id={patient._id} draggable="true" onDragStart={props.drag}>
                                 <Row id={patient._id}>
-                                    <Col size="4">
-                                        <h5>{patient.lastName}, {patient.firstName}</h5>
+                                    <Col size="1">
+                                        <Image cloudName="dqnwm3uoi" publicId={patient.cloudinary_id} width="40" crop="scale"/>
+                                    </Col>
+                                    <Col size="3">
+                                        <h6>{patient.lastName}, {patient.firstName}</h6>
                                     </Col>
                                     <Col size="3">
                                         <h6>{patient.note}</h6>

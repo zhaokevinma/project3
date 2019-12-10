@@ -2,6 +2,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// This line is to resolve the following deprecation warning 
+// "DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.""
+mongoose.set('useCreateIndex', true);
+
 // ------ Patient Schema
 const PatientSchema = new Schema({
     lastName: {
@@ -11,6 +15,9 @@ const PatientSchema = new Schema({
     firstName: {
         type: String,
         required: true
+    },
+    cloudinary_id: {
+        type: String,
     },
     imageURL: {
         type: String
