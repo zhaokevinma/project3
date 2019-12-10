@@ -21,7 +21,8 @@ class Worklist extends Component {
         setModalShow: false,
         comment: "",
         newPatientImgURL: "",
-        newPatientComment: ""
+        newPatientComment: "",
+        file: {}
     };
 
     // ------ Handles modal new patient create input
@@ -63,7 +64,8 @@ class Worklist extends Component {
         let newPatient = {
             lastName: this.state.newPatientLast,
             firstName: this.state.newPatientFirst,
-            imageURL: this.state.newPatientImgURL,
+            cloudinary_id: this.state.file.public_id,
+            imageURL: this.state.newPatientImgURL || this.state.file.secure_url,
             note: this.state.newPatientComment
         };
 
@@ -295,6 +297,27 @@ class Worklist extends Component {
             .catch(err => console.log(err));
     }
 
+    // ------ Upload img to cloudinary
+    uploadImg = async e => {
+        const files = e.target.files;
+        const data = new FormData();
+        data.append('file', files[0]);
+        data.append('upload_preset', 'patient');
+
+        const res = await fetch(
+            'https://api.cloudinary.com/v1_1/dqnwm3uoi/image/upload',
+            {
+                method: 'POST',
+                body: data
+            }
+        )
+        
+        const file = await res.json();
+        console.log(file);
+
+        this.setState({ file: file });
+    }
+
     // ------ Render
     render() {
         return (
@@ -332,6 +355,7 @@ class Worklist extends Component {
                             newPatientImgURL={this.state.newPatientImgURL}
                             deletePatient={this.deletePatient}
                             drag={this.drag}
+                            uploadImg={this.uploadImg}
                         />
                     </Col>
                 </Row>

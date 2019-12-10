@@ -16,6 +16,9 @@ const PatientSchema = new Schema({
         type: String,
         required: true
     },
+    cloudinary_id: {
+        type: String,
+    },
     imageURL: {
         type: String
     },
