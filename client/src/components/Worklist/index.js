@@ -3,6 +3,7 @@ import React from "react";
 import { Row, Col } from "../Grid";
 import { Accordion, Card, Button, FormControl, InputGroup } from 'react-bootstrap';
 import InputFormComponent from "../InputForm";
+import { Image } from 'cloudinary-react';
 import "./style.css";
 
 // ------ Worklist Component
@@ -139,7 +140,7 @@ const Worklist = props => {
                                         </Col>
                                     </Row>
                                     <Row>
-                                        <Col size="8">
+                                        <Col size="6">
                                             <input
                                                 className="form-control"
                                                 type="text"
@@ -147,6 +148,11 @@ const Worklist = props => {
                                                 placeholder="Image URL..."
                                                 value={props.newPatientImgURL}
                                                 onChange={props.handleNewPatientImgURL}
+                                            />
+                                        </Col>
+                                        <Col size="6">
+                                            <input 
+                                                type="file"
                                             />
                                         </Col>
                                     </Row>
@@ -181,8 +187,11 @@ const Worklist = props => {
                         return (
                             <li className="list-group-item" key={patient._id} id={patient._id} draggable="true" onDragStart={props.drag}>
                                 <Row id={patient._id}>
-                                    <Col size="4">
-                                        <h5>{patient.lastName}, {patient.firstName}</h5>
+                                    <Col size="1">
+                                        <Image cloudName="dqnwm3uoi" publicId={`/project3/patients/${patient.firstName}_${patient.lastName}.jpg`} width="40" crop="scale"/>
+                                    </Col>
+                                    <Col size="3">
+                                        <h6>{patient.lastName}, {patient.firstName}</h6>
                                     </Col>
                                     <Col size="3">
                                         <h6>{patient.note}</h6>
