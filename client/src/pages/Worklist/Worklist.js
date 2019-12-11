@@ -256,7 +256,7 @@ class Worklist extends Component {
     openFile = event => {
         event.preventDefault();
         console.log("Clicked");
-        // window.open("https://www.w3schools.com");
+
         let patientID = event.target.id;
         console.log(patientID, event.target.id);
         let thePatient = this.state.patients.filter(function(patient) {
@@ -268,11 +268,9 @@ class Worklist extends Component {
         let patientImg = thePatient[0].imageURL;
         console.log(thePatient);
         console.log(patientImg);
-        var myWindow = window.open("", "", "width=500,height=550");
-        // https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs13244-018-0663-9/MediaObjects/13244_2018_663_Fig17_HTML.png
-        // https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs13244-018-0663-9/MediaObjects/13244_2018_663_Fig1_HTML.png
+        var myWindow = window.open("", "", "width=550,height=600");
         myWindow.document.write("<h5>" + thePatient[0].lastName + "</h5>");
-        myWindow.document.write("<img width=500px height=500px src=" + patientImg + ">");
+        myWindow.document.write("<img width=500px src=" + patientImg + ">");
     }
 
     // ------ Drag and drop related
