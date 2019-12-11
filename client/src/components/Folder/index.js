@@ -10,7 +10,7 @@ const Folder = props => {
         <div className="card folderwhole">
             <div className="card-body">
                 <div className="folder">
-                    <h4>Folders</h4>
+                    <h4 style={{marginBottom: "20px", padding: "6px 0"}}>Folders</h4>
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
