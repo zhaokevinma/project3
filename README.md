@@ -13,7 +13,7 @@ https://intense-depths-81085.herokuapp.com/
 * [MongoDB](https://www.mongodb.com/)
 * [Express](https://expressjs.com/)
 * [React](https://reactjs.org/)
-* [React](https://nodejs.org/en/)
+* [Node.js](https://nodejs.org/en/)
 
 ## Authors
 
