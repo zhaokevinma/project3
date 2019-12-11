@@ -12,8 +12,14 @@ const Worklist = props => {
         <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
-                    <h4>Worklist</h4>
-                    <InputFormComponent handleOnChange={props.handleOnChange}/>
+                    <Row>
+                        <Col size="8">
+                            <h4>Worklist</h4>
+                        </Col>
+                        <Col size="4">
+                            <InputFormComponent handleOnChange={props.handleOnChange}/>
+                        </Col>
+                    </Row>
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
@@ -23,7 +29,7 @@ const Worklist = props => {
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>New Patient</h4>
+                                            <h5>New Patient</h5>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>
@@ -109,9 +115,14 @@ const Worklist = props => {
         <div className="card worklistwhole">
             <div className="card-body">
                 <div className="worklist">
-                    <h4>Worklist</h4>
-                    <InputFormComponent handleOnChange={props.handleOnChange}/>
-
+                <   Row>
+                        <Col size="8">
+                            <h4>Worklist</h4>
+                        </Col>
+                        <Col size="4">
+                            <InputFormComponent handleOnChange={props.handleOnChange}/>
+                        </Col>
+                    </Row>
                     <Accordion defaultActiveKey="0">
                         <Card>
                             <Card.Header>
@@ -121,7 +132,7 @@ const Worklist = props => {
                                             <i className="fas fa-user-plus fa-2x"></i>
                                         </Col>
                                         <Col size="6">
-                                            <h4>New Patient</h4>
+                                            <h5>New Patient</h5>
                                         </Col>
                                     </Row>
                                 </Accordion.Toggle>
@@ -205,7 +216,7 @@ const Worklist = props => {
                             <li className="list-group-item" key={patient._id} id={patient._id} draggable="true" onDragStart={props.drag}>
                                 <Row id={patient._id}>
                                     <Col size="1">
-                                        <Image cloudName="dqnwm3uoi" publicId={patient.cloudinary_id} width="40" crop="scale"/>
+                                        <Image cloudName="dqnwm3uoi" publicId={patient.cloudinary_id} width="50" height="50" crop="scale"/>
                                     </Col>
                                     <Col size="3">
                                         <h6>{patient.lastName}, {patient.firstName}</h6>
@@ -219,15 +230,13 @@ const Worklist = props => {
                                             className="fileButton"
                                             onClick={props.openFile}
                                         >
-                                            <h5 id={patient._id}><i id={patient._id} className="fas fa-file-medical"></i></h5>
+                                            <i id={patient._id} className="fas fa-file-medical"></i>
                                         </Button>
                                     </Col>
                                     <Col size="3">
                                         <Accordion>
                                                 <Accordion.Toggle className="fileButton" as={Button} eventKey="0">
-                                                    <h5 id={patient._id}>
-                                                        <i id={patient._id} className="fas fa-sticky-note"></i>
-                                                    </h5>
+                                                    <i id={patient._id} className="fas fa-sticky-note"></i>
                                                 </Accordion.Toggle>
                                                 <Accordion.Collapse eventKey="0">
                                                     <InputGroup>
