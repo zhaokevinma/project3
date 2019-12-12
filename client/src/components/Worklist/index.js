@@ -216,7 +216,7 @@ const Worklist = props => {
                             <li className="list-group-item" key={patient._id} id={patient._id} draggable="true" onDragStart={props.drag}>
                                 <Row id={patient._id}>
                                     <Col size="1">
-                                        <Image cloudName="dqnwm3uoi" publicId={patient.cloudinary_id} width="50" height="50" crop="scale"/>
+                                        <Image cloudName={process.env.REACT_APP_CLOUDINARYDOMAIN} publicId={patient.cloudinary_id} width="50" height="50" crop="scale"/>
                                     </Col>
                                     <Col size="3">
                                         <h6>{patient.lastName}, {patient.firstName}</h6>

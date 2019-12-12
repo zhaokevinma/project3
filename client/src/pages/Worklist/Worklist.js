@@ -303,7 +303,7 @@ class Worklist extends Component {
         data.append('upload_preset', 'patient');
 
         const res = await fetch(
-            'https://api.cloudinary.com/v1_1/dqnwm3uoi/image/upload',
+            `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARYDOMAIN}/image/upload`,
             {
                 method: 'POST',
                 body: data
