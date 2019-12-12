@@ -4,6 +4,20 @@
 
 However, the complex architecture of a traditional PACS (Picture Archiving and Communication Systems) is not appealing to these small clinics. Here we propose a cost-efficient software application that can be flexibly integrated into their patient data management methods. 
 
+## Try it on your own
+
+1. Fork this repo or download the zip file to your local machine
+2. Go to [Cloudinary](https://cloudinary.com/) to set up an account and note down your domain
+3. Navigate to "client" directory in the app and create a .env file
+4. In your .env file, type the following:
+```
+REACT_APP_CLOUDINARYDOMAIN=Your_domian
+```
+5. Navigate back to the root folder and run
+```
+npm start
+```
+
 ## Deployed build on Heroku
 
 https://intense-depths-81085.herokuapp.com/
